@@ -14,7 +14,8 @@ function! BufSel()
 		else
 			let word = " "
 		endif
-        	echo word . i . ": ". bufname(i)
+        	"echo word . i . ": ". bufname(i)
+		echo printf("%s%2d: %s", word, i, bufname(i))
 	endfor
 	if (n <= 1)
 		return

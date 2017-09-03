@@ -4,7 +4,7 @@ function! BufSel()
 	let alt = bufnr("#")
 	let n = bufnr("$")
 	for i in range(1, n)
-		if (!bufexists(i))
+		if (!bufexists(i) || bufname(i) == "__Tag_List__")
 			continue
 		endif
 		if (i == cur)

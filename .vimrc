@@ -36,10 +36,10 @@ hi Comment ctermfg=darkgreen
 "autocmd BufNewFile,BufRead *.c,*.cpp,*.h :match OverLength /\%>80v.\+/
 highlight ColorColumn ctermbg=236
 autocmd BufNewFile,BufRead *.c,*.cpp,*.h,*.java :set colorcolumn=80
-autocmd BufWritePost *.c,*.cpp,*.h,*.java :TlistUpdate
 "Cscope ---
 hi ModeMsg ctermfg=34
 "--------------------------------------- Taglist -------------------------------------------
+autocmd BufWritePost *.c,*.cpp,*.h,*.java :TlistUpdate
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Display_Tag_Scope=0
 let Tlist_Auto_Open=1
@@ -90,20 +90,20 @@ function! SearchTag()
 	call inputrestore()
 	echo "\n"
 	try
-		execute 'cs find t '.search_tag
+		execute 'cs find e '.search_tag
 		call AddMyHis(s:mylist, search_tag)
 	catch
 		echohl ErrorMsg
 		echo v:exception
 		echohl None
 	endtry
-"	call histadd("cmd", 'cs find t '.search_tag)
+"	call histadd("cmd", 'cs find e '.search_tag)
 endfunction
 function! ReSearchTag()
 	if s:mylist[0] == 1
-		execute 'cs find t '.s:mylist[-1]
+		execute 'cs find e '.s:mylist[-1]
 	else
-		execute 'cs find t '.s:mylist[s:mylist[0]-1]
+		execute 'cs find e '.s:mylist[s:mylist[0]-1]
 	endif
 endfunction
 function! SearchTagHis()
@@ -113,7 +113,7 @@ function! SearchTagHis()
 	call inputrestore()
 	echo "\n"
 	if histag > 0 && histag < len(s:mylist)
-		execute 'cs find t '.s:mylist[histag]
+		execute 'cs find e '.s:mylist[histag]
 	else
 		redraw
 	endif
@@ -134,7 +134,7 @@ endfunction
 map <F7> :tabp<CR>
 map <F8> :tabn<CR>
 "nnoremap <silent> <F7> :hi Normal ctermfg=black ctermbg=white<CR>:hi Cursorline ctermbg=white cterml=reverse<CR>
-nnoremap <C-\>/ :call SearchTag()<CR>
+nnoremap <C-f> :call SearchTag()<CR>
 nnoremap <C-\>h :call SearchTagHis()<CR>
 nnoremap <C-l> :call ReSearchTag()<CR>
 nnoremap <C-n> :tnext<CR>
@@ -142,16 +142,13 @@ nnoremap <C-p> :tprevious<CR>
 command Path :echo expand('%:p') 
 map <C-j> 3j
 map <C-k> 3k
-"map <C-j> 3<C-e>
-"map <C-k> 3<C-y>
 nnoremap <C-e> 3<C-e>
 nnoremap <C-y> 3<C-y>
-nnoremap <Space> 3<C-e>
+nnoremap <S-j> 3<C-e>
+nnoremap <S-k> 3<C-y>
 nnoremap <C-w>f :vertical wincmd f<CR>
 nnoremap <F5> :!csmgr -f<CR> :cs reset<CR>
 nnoremap <silent> <F9> : TlistToggle<CR>
 nnoremap <silent> <F10> :call SwitchTab()<CR>
 inoremap jj <Esc>
 nnoremap gh :edit cscope.files<CR>
-"nnoremap gb :buffers<CR>:buffer<space>
-"source buf_sel.vim

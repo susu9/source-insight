@@ -2012,7 +2012,7 @@ function! s:Tlist_Window_Refresh_File(filename, ftype)
         let fidx_ttype = 's:tlist_' . fidx . '_' . ttype
         let ttype_txt = {fidx_ttype}
         if ttype_txt != ''
-            let txt = '  ' . s:tlist_{a:ftype}_{i}_fullname
+            let txt = '' . s:tlist_{a:ftype}_{i}_fullname
             if g:Tlist_Compact_Format == 0
                 let ttype_start_lnum = line('.') + 1
                 silent! put =txt
@@ -2266,9 +2266,9 @@ function! s:Tlist_Parse_Tagline(tag_line)
 
     " Extract the tag scope/prototype
     if g:Tlist_Display_Prototype
-        let ttxt = '    ' . s:Tlist_Get_Tag_Prototype(s:fidx, s:tidx)
+        let ttxt = ' ' . s:Tlist_Get_Tag_Prototype(s:fidx, s:tidx)
     else
-        let ttxt = '    ' . tag_name
+        let ttxt = ' ' . tag_name
 
         " Add the tag scope, if it is available and is configured. Tag
         " scope is the last field after the 'line:<num>\t' field

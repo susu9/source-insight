@@ -40,6 +40,7 @@ autocmd BufNewFile,BufRead *.c,*.cpp,*.h,*.java :set colorcolumn=80
 hi ModeMsg ctermfg=34
 "--------------------------------------- Taglist -------------------------------------------
 autocmd BufWritePost *.c,*.cpp,*.h,*.java :TlistUpdate
+autocmd VimEnter cscope.files :TlistToggle
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Display_Tag_Scope=0
 let Tlist_Auto_Open=1
@@ -89,6 +90,10 @@ function! SearchTag()
 	let search_tag = input('find:', '', 'tag')
 	call inputrestore()
 	echo "\n"
+	if search_tag == ''
+		redraw
+		return
+	endif
 	try
 		execute 'cs find e '.search_tag
 		call AddMyHis(s:mylist, search_tag)
@@ -97,7 +102,6 @@ function! SearchTag()
 		echo v:exception
 		echohl None
 	endtry
-"	call histadd("cmd", 'cs find e '.search_tag)
 endfunction
 function! ReSearchTag()
 	if s:mylist[0] == 1
@@ -130,12 +134,19 @@ function! SwitchTab()
 		set noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
 	endif
 endfunction
+if match(getcwd(), "\\cKernel") > 0
+	"echo 'set noexpandtab tabstop=8 shiftwidth=8 softtabstop=8'
+	set noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
+else
+	"echo 'set expandtab tabstop=4 shiftwidth=4 softtabstop=4'
+	set expandtab tabstop=4 shiftwidth=4 softtabstop=4
+endif
 "---------------------------------- Key mapping -------------------------------------------
 map <F7> :tabp<CR>
 map <F8> :tabn<CR>
 "nnoremap <silent> <F7> :hi Normal ctermfg=black ctermbg=white<CR>:hi Cursorline ctermbg=white cterml=reverse<CR>
 nnoremap <C-f> :call SearchTag()<CR>
-nnoremap <C-\>h :call SearchTagHis()<CR>
+nnoremap <C-h> :call SearchTagHis()<CR>
 nnoremap <C-l> :call ReSearchTag()<CR>
 nnoremap <C-n> :tnext<CR>
 nnoremap <C-p> :tprevious<CR>

@@ -1,3 +1,4 @@
+"from https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
 function! WrapForTmux(s)
   if !exists('$TMUX')
     return a:s

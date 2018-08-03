@@ -3,7 +3,7 @@ Let vim support file list, search history, tag list and neat interface
 
 ## Screenshot:
 
-![example](https://github.com/susu9/source-insight/blob/master/screenshot-1.jpg)
+![example](https://github.com/susu9/source-insight/blob/master/screenshot-1.png)
 
 ## Hotkey
 File list: 'gh'

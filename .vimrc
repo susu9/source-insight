@@ -52,6 +52,7 @@ let tlist_c_settings = 'c;d:macro;g:enum;s:struct;u:union;t:typedef;' .
 let tlist_java_settings = 'java;p:package;c:class;i:interface;' .
                               \ 'g:enum;m:method'
 "---------------------------------- Key mapping -------------------------------------------
+set makeprg=g++\ -std=c++11\ -o\ %<\ %
 map <F7> :tabp<CR>
 map <F8> :tabn<CR>
 "nnoremap <silent> <F7> :hi Normal ctermfg=black ctermbg=white<CR>:hi Cursorline ctermbg=white cterml=reverse<CR>

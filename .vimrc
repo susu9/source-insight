@@ -61,7 +61,7 @@ nnoremap <C-h> :call SearchTagHis()<CR>
 nnoremap <C-l> :call ReSearchTag()<CR>
 nnoremap <C-n> :tnext<CR>
 nnoremap <C-p> :tprevious<CR>
-command Path :echo expand('%:p') 
+command! Path :echo expand('%:p')
 map <C-j> 3j
 map <C-k> 3k
 nnoremap <C-e> 3<C-e>
@@ -74,3 +74,4 @@ nnoremap <silent> <F9> : TlistToggle<CR>
 nnoremap <silent> <F10> :call SwitchTab()<CR>
 inoremap jj <Esc>
 nnoremap gh :edit cscope.files<CR>
+nnoremap gb :call BufSel()<CR>

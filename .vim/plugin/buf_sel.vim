@@ -26,4 +26,3 @@ function! BufSel()
 	endif
 endfunction
 
-nnoremap gb :call BufSel()<CR>

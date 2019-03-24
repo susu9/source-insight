@@ -26,20 +26,15 @@ hi Cursorline ctermbg=236 cterm=bold term=bold
 hi TabLineFill ctermfg=black ctermbg=black
 hi TabLine ctermfg=white ctermbg=238 cterm=bold
 hi TabLineSel ctermfg=white ctermbg=34
-"highlight Cursor ctemfg=white ctermbg=black
-"highlight iCursor ctermfg=white ctermbg=steelblue
 hi Pmenu ctermfg=white ctermbg=238
 hi PmenuSel ctermfg=238 ctermbg=white
 hi Comment ctermfg=darkgreen
-"Column margin line ---
-"highlight OverLength ctermbg=red ctermfg=white
-"autocmd BufNewFile,BufRead *.c,*.cpp,*.h :match OverLength /\%>80v.\+/
 highlight ColorColumn ctermbg=236
-autocmd BufNewFile,BufRead *.c,*.cpp,*.h,*.java :set colorcolumn=80
-"Cscope ---
+autocmd BufNewFile,BufRead *.c,*.cpp,*.h,*.java,*.js :set colorcolumn=80
+"Cscope
 hi ModeMsg ctermfg=34
 "--------------------------------------- Taglist -------------------------------------------
-autocmd BufWritePost *.c,*.cpp,*.h,*.java :TlistUpdate
+autocmd BufWritePost *.c,*.cpp,*.h,*.java,*.js :TlistUpdate
 autocmd VimEnter cscope.files :TlistToggle
 let Tlist_Exit_OnlyWindow=1
 let Tlist_Display_Tag_Scope=0
@@ -51,6 +46,14 @@ let tlist_c_settings = 'c;d:macro;g:enum;s:struct;u:union;t:typedef;' .
                            \ 'f:function'
 let tlist_java_settings = 'java;p:package;c:class;i:interface;' .
                               \ 'g:enum;m:method'
+" Default tab setting --------------------------------------------------------------------
+if match(getcwd(), "\\cKernel") > 0
+    set noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
+else
+    set expandtab tabstop=4 shiftwidth=4 softtabstop=4
+endif
+autocmd FileType javascript set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType python set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 "---------------------------------- Key mapping -------------------------------------------
 set makeprg=g++\ -std=c++11\ -o\ %<\ %
 map <F7> :tabp<CR>

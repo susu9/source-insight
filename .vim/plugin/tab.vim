@@ -11,9 +11,3 @@ function! SwitchTab()
 	endif
 endfunction
 
-" Default tab setting
-if match(getcwd(), "\\cKernel") > 0
-	set noexpandtab tabstop=8 shiftwidth=8 softtabstop=8
-else
-	set expandtab tabstop=4 shiftwidth=4 softtabstop=4
-endif

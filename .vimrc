@@ -39,9 +39,9 @@ set cursorline
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 "---- cscope_search map ----
-nnoremap <C-f> :call cscope_search#SearchTag()<CR>
-nnoremap <C-h> :call cscope_search#SearchTagHis()<CR>
-nnoremap <C-l> :call cscope_search#SearchTagLast()<CR>
+nnoremap <C-f> :call SearchTag()<CR>
+nnoremap <C-h> :call SearchTagHis()<CR>
+nnoremap <C-l> :call SearchTagLast()<CR>
 nnoremap <C-n> :tnext<CR>
 nnoremap <C-p> :tprevious<CR>
 

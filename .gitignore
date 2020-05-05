@@ -1,5 +1,4 @@
 backup_*
 .DS_Store
-.vim/autoload/
 .vim/plugged/
 

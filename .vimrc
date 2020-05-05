@@ -10,6 +10,8 @@ call plug#begin('~/.vim/plugged')
 Plug 'https://github.com/majutsushi/tagbar.git'
 Plug 'sheerun/vim-polyglot'
 Plug 'morhetz/gruvbox'
+Plug 'tpope/vim-surround'
+Plug 'yggdroot/indentLine'
 call plug#end()
 
 "---- Tagbar ----
@@ -39,9 +41,9 @@ set cursorline
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
 
 "---- cscope_search map ----
-nnoremap <C-f> :call SearchTag()<CR>
-nnoremap <C-h> :call SearchTagHis()<CR>
-nnoremap <C-l> :call SearchTagLast()<CR>
+nnoremap <C-f> :call cscope_search#SearchTag()<CR>
+nnoremap <C-h> :call cscope_search#SearchTagHis()<CR>
+nnoremap <C-l> :call cscope_search#SearchTagLast()<CR>
 nnoremap <C-n> :tnext<CR>
 nnoremap <C-p> :tprevious<CR>
 
@@ -62,4 +64,4 @@ command! GetPath :echo expand('%:p')
 "---- Auto Commands ----
 autocmd FileType cpp autocmd VimEnter * :set makeprg=g++\ -std=c++11\ -o\ %<\ %
 autocmd FileType python,c,cpp,javascript,java autocmd VimEnter * :set colorcolumn=80
-autocmd FileType html,scss,javascript autocmd BufEnter * :set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd FileType html,scss,javascript,vim autocmd BufEnter * :set expandtab tabstop=2 shiftwidth=2 softtabstop=2

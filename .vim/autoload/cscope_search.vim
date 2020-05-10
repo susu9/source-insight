@@ -59,7 +59,9 @@ function! cscope_search#SearchTag()
   try
     execute 'cs find e '.search_tag
     call cscope_search#AddMyHis(s:mylist, search_tag)
+    redraw
   catch
+    redraw
     echohl ErrorMsg
     echo v:exception
     echohl None
@@ -68,7 +70,9 @@ endfunction
 
 function! cscope_search#SearchTagLast()
   if s:lastIdx == -1
+    echohl WarningMsg
     echo "No history."
+    echohl None
     return
   endif
   echo ""
@@ -77,7 +81,9 @@ endfunction
 
 function! cscope_search#SearchTagHis()
   if s:lastIdx == -1
+    echohl WarningMsg
     echo "No history."
+    echohl None
     return
   endif
   call cscope_search#ShowMyHis(s:mylist)

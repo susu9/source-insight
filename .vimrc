@@ -33,10 +33,12 @@ nnoremap <C-n> :GitGutterNextHunk<CR>
 nnoremap <C-p> :GitGutterPrevHunk<CR>
 
 "---- cscope-search ----
+nnoremap <C-f> :call cscope_search#SearchTag()<CR>
+nnoremap <C-h> :call cscope_search#SearchTagHis()<CR>
+nnoremap <C-l> :call cscope_search#SearchTagLast()<CR>
 set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
-nnoremap <C-f> :call cscope_search#SearchTag()<CR> :cw<CR>
-nnoremap <C-h> :call cscope_search#SearchTagHis()<CR> :cw<CR>
-nnoremap <C-l> :call cscope_search#SearchTagLast()<CR> :cw<CR>
+autocmd QuickFixCmdPost [^l]* nested cwindow
+autocmd QuickFixCmdPost    l* nested lwindow
 
 "---- General ----
 set backspace=indent,eol,start

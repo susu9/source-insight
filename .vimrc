@@ -12,6 +12,7 @@ Plug 'sheerun/vim-polyglot'
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-surround'
 Plug 'yggdroot/indentLine'
+Plug 'airblade/vim-gitgutter'
 call plug#end()
 
 "---- Tagbar ----
@@ -26,6 +27,17 @@ colorscheme gruvbox
 "---- vim-polyglot ----
 syntax on
 
+"---- vim-gitgutter ----
+autocmd BufWritePost * :GitGutterAll
+nnoremap <C-n> :GitGutterNextHunk<CR>
+nnoremap <C-p> :GitGutterPrevHunk<CR>
+
+"---- cscope-search ----
+set cscopequickfix=s-,c-,d-,i-,t-,e-,a-
+nnoremap <C-f> :call cscope_search#SearchTag()<CR> :cw<CR>
+nnoremap <C-h> :call cscope_search#SearchTagHis()<CR> :cw<CR>
+nnoremap <C-l> :call cscope_search#SearchTagLast()<CR> :cw<CR>
+
 "---- General ----
 set backspace=indent,eol,start
 set laststatus=1
@@ -39,13 +51,6 @@ set showmode
 set cmdheight=1
 set cursorline
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
-
-"---- cscope_search map ----
-nnoremap <C-f> :call cscope_search#SearchTag()<CR>
-nnoremap <C-h> :call cscope_search#SearchTagHis()<CR>
-nnoremap <C-l> :call cscope_search#SearchTagLast()<CR>
-nnoremap <C-n> :tnext<CR>
-nnoremap <C-p> :tprevious<CR>
 
 "---- Editor map ----
 noremap <C-j> 3<C-e>

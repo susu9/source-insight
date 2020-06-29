@@ -4,13 +4,13 @@
 let s:mylist=[]
 let s:lastIdx=-1
 
-if !exists('g:cscope_search_history_size')
-  let g:cscope_search_history_size=15
-endif
-
-if !exists('g:cscope_search_prevent_jump')
-  let g:cscope_search_prevent_jump=1
-endif
+"if !exists('g:cscope_search_history_size')
+"  let g:cscope_search_history_size=15
+"endif
+"
+"if !exists('g:cscope_search_prevent_jump')
+"  let g:cscope_search_prevent_jump=1
+"endif
 
 function! cscope_search#AddMyHis(list, item)
   if len(a:list) && a:list[s:lastIdx] == a:item

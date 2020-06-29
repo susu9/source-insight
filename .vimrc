@@ -55,6 +55,7 @@ set showmode
 set cmdheight=1
 set cursorline
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4
+set relativenumber
 
 "---- Editor map ----
 noremap <C-j> 3<C-e>

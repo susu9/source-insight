@@ -8,6 +8,10 @@ if !exists('g:cscope_search_history_size')
   let g:cscope_search_history_size=15
 endif
 
+if !exists('g:cscope_search_prevent_jump')
+  let g:cscope_search_prevent_jump=1
+endif
+
 function! cscope_search#AddMyHis(list, item)
   if len(a:list) && a:list[s:lastIdx] == a:item
     return
@@ -47,25 +51,47 @@ function! cscope_search#ShowMyHis(list)
   endwhile
 endfunction
 
-function! cscope_search#SearchTag()
-  call inputsave()
-  let search_tag = input('find:', '', 'tag')
-  call inputrestore()
-  echo "\n"
-  if search_tag == ''
-    redraw
-    return
+function! s:_SearchTag(tag)
+  let ret = 1
+  let fakeEdit = 0
+  if g:cscope_search_prevent_jump && &switchbuf !~ 'split\|newtab'
+    try
+      execute 'silent normal ii'
+      let fakeEdit = 1
+    catch
+    endtry
   endif
+
   try
-    execute 'cs find e '.search_tag
-    call cscope_search#AddMyHis(s:mylist, search_tag)
-    redraw
+    execute 'silent cs find e' a:tag
+  catch /^Vim(cscope):E37/
+    " Ignore No write since last change (add ! to override)
   catch
     redraw
     echohl ErrorMsg
     echo v:exception
     echohl None
+    let ret = 0
   endtry
+
+  if fakeEdit
+    execute 'silent normal u'
+  endif
+  return ret
+endfunction
+
+function! cscope_search#SearchTag()
+  call inputsave()
+  let tag = input('find:', '', 'tag')
+  call inputrestore()
+  echo "\r"
+  echo ""
+  if tag == ''
+    return
+  endif
+  if s:_SearchTag(tag)
+    call cscope_search#AddMyHis(s:mylist, tag)
+  endif
 endfunction
 
 function! cscope_search#SearchTagLast()
@@ -76,7 +102,7 @@ function! cscope_search#SearchTagLast()
     return
   endif
   echo ""
-  execute 'cs find e '.s:mylist[s:lastIdx]
+  call s:_SearchTag(s:mylist[s:lastIdx])
 endfunction
 
 function! cscope_search#SearchTagHis()
@@ -90,10 +116,9 @@ function! cscope_search#SearchTagHis()
   call inputsave()
   let inIdx = input('Select:', '')
   call inputrestore()
-  echo "\n"
+  echo "\r"
 
   if inIdx <= 0 || inIdx > len(s:mylist)
-    redraw
     return
   endif
 
@@ -101,6 +126,6 @@ function! cscope_search#SearchTagHis()
   if i < 0
     let i += len(s:mylist)
   endif
-  execute 'cs find e '.s:mylist[i]
+  call s:_SearchTag(s:mylist[i])
   redraw
 endfunction

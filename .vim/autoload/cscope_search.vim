@@ -9,11 +9,7 @@ function! cscope_search#AddMyHis(list, item)
     return
   endif
 
-  let i = s:lastIdx + 1
-  if i == g:cscope_search_history_size
-    let i = 0
-  endif
-
+  let i = (s:lastIdx + 1) % g:cscope_search_history_size
   if len(a:list) == g:cscope_search_history_size
     let a:list[i] = a:item
   else
@@ -27,17 +23,11 @@ function! cscope_search#ShowMyHis(list)
   echo printf("%7s  %s\n", "#", "find history")
   echohl None
 
-  let i = s:lastIdx
+  let len = len(a:list)
+  let i = s:lastIdx + len
   let c = 1
-  while i >= 0
-    echo printf("%7d  %s\n", c, a:list[i])
-    let i -= 1
-    let c += 1
-  endwhile
-
-  let i = len(a:list) - 1
-  while i > s:lastIdx
-    echo printf("%7d  %s\n", c, a:list[i])
+  while c <= len
+    echo printf("%7d  %s\n", c, a:list[i % len])
     let i -= 1
     let c += 1
   endwhile
@@ -110,14 +100,12 @@ function! cscope_search#SearchTagHis()
   call inputrestore()
   echo "\r"
 
-  if inIdx <= 0 || inIdx > len(s:mylist)
+  let len = len(s:mylist)
+  if inIdx <= 0 || inIdx > len
     return
   endif
 
-  let i = s:lastIdx - (inIdx - 1)
-  if i < 0
-    let i += len(s:mylist)
-  endif
+  let i = (s:lastIdx - (inIdx - 1) + len) % len
   call s:_SearchTag(s:mylist[i])
   redraw
 endfunction

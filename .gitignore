@@ -1,4 +1,4 @@
 backup_*
 .DS_Store
 .vim/plugged/
-
+*.swp

@@ -4,14 +4,6 @@
 let s:mylist=[]
 let s:lastIdx=-1
 
-"if !exists('g:cscope_search_history_size')
-"  let g:cscope_search_history_size=15
-"endif
-"
-"if !exists('g:cscope_search_prevent_jump')
-"  let g:cscope_search_prevent_jump=1
-"endif
-
 function! cscope_search#AddMyHis(list, item)
   if len(a:list) && a:list[s:lastIdx] == a:item
     return
@@ -54,16 +46,16 @@ endfunction
 function! s:_SearchTag(tag)
   let ret = 1
   let fakeEdit = 0
-  if g:cscope_search_prevent_jump && &switchbuf !~ 'split\|newtab'
+  if g:cscope_search_prevent_jump && &cscopequickfix =~ 'e-' && &switchbuf !~ 'split\|newtab'
     try
-      execute 'silent normal ii'
+      execute 'silent normal! ii'
       let fakeEdit = 1
     catch
     endtry
   endif
 
   try
-    execute 'silent cs find e' a:tag
+    execute 'cs find e' a:tag
   catch /^Vim(cscope):E37/
     " Ignore No write since last change (add ! to override)
   catch
@@ -75,7 +67,7 @@ function! s:_SearchTag(tag)
   endtry
 
   if fakeEdit
-    execute 'silent normal u'
+    execute 'silent normal! u'
   endif
   return ret
 endfunction

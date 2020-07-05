@@ -32,10 +32,7 @@ autocmd BufWritePost * :GitGutterAll
 
 "---- cscope-search ----
 autocmd VimEnter cscope.files :copen 6 | :wincmd p
-set cscopequickfix=s-,f-,g-,c-,d-,i-,t-,e-,a-
-"nnoremap <C-f> :call cscope_search#SearchTag()<CR>
-"nnoremap <C-h> :call cscope_search#SearchTagHis()<CR>
-"nnoremap <C-l> :call cscope_search#SearchTagLast()<CR>
+set cscopequickfix=s-,f-,g-,c-,d-,i-,t-,e-
 nnoremap <C-f> :CscopeSearch<CR>
 nnoremap <C-h> :CscopeSearchHistory<CR>
 nnoremap <C-l> :CscopeSearchLast<CR>

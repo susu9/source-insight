@@ -36,6 +36,7 @@ endfunction
 function! s:_SearchTag(tag)
   let ret = 1
   let fakeEdit = 0
+  let curBuf = bufnr("%")
   if g:cscope_search_prevent_jump && &cscopequickfix =~ 'e-' && &switchbuf !~ 'split\|newtab'
     try
       execute 'silent normal! ii'
@@ -57,6 +58,9 @@ function! s:_SearchTag(tag)
   endtry
 
   if fakeEdit
+    if bufnr("%") != curBuf
+      execute "silent buffer ". curBuf
+    endif
     execute 'silent normal! u'
   endif
   return ret

@@ -35,7 +35,7 @@ syntax on
 autocmd BufWritePost * :GitGutterAll
 
 "---- cscope-search ----
-"autocmd VimEnter cscope.files :copen 6 | :wincmd p
+autocmd VimEnter cscope.files :copen 6 | :wincmd p
 set cscopequickfix=s-,f-,g-,c-,d-,i-,t-,e-
 nnoremap <C-f> :CscopeSearch<CR>
 nnoremap <C-h> :CscopeSearchHistory<CR>
@@ -44,7 +44,7 @@ autocmd QuickFixCmdPost [^l]* nested botright cwindow 6
 "autocmd QuickFixCmdPost    l* nested botright lwindow 6
 "nnoremap <C-n> :cn<CR>
 "nnoremap <C-p> :cp<CR>
-set switchbuf=uselast
+"set switchbuf=uselast
 
 "---- ctrlp ----
 let g:ctrlp_user_command = 'cat cscope.files'
@@ -58,6 +58,8 @@ set autoindent
 set number
 set hlsearch
 set incsearch
+set ignorecase
+set smartcase
 set ruler
 set showmode
 set cmdheight=1

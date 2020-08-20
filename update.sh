@@ -2,5 +2,6 @@
 set -x
 cp -a ~/.vimrc .vimrc
 rm -rf .vim
-cp -a ~/.vim .
+mkdir .vim
+cp -a ~/.vim/plugin .vim/
 set +x

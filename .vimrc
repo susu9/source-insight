@@ -12,16 +12,25 @@ Plug 'sheerun/vim-polyglot'
 Plug 'morhetz/gruvbox'
 Plug 'tpope/vim-surround'
 Plug 'yggdroot/indentLine'
-Plug 'airblade/vim-gitgutter'
+"Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'susu9/cscope_search'
+Plug 'ackyshake/VimCompletesMe'
+Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+"Plug 'dense-analysis/ale'
 call plug#end()
+
+"---- Ale ----
+"let g:ale_fix_on_save = 1
+"let g:ale_lint_on_text_changed = 'never'
+"let g:ale_lint_on_insert_leave = 0
+"let g:ale_lint_on_enter = 0
 
 "---- Tagbar ----
 let g:tagbar_left=1
 autocmd VimEnter * nested :call tagbar#autoopen(1)
 autocmd BufEnter * nested :call tagbar#autoopen(0)
-autocmd VimEnter cscope.files :TagbarOpen
+autocmd VimEnter * :TagbarOpen
 autocmd BufEnter cscope.files :set ro
 
 "---- gruvbox ----
@@ -32,10 +41,10 @@ colorscheme gruvbox
 syntax on
 
 "---- vim-gitgutter ----
-autocmd BufWritePost * :GitGutterAll
+"autocmd BufWritePost * :GitGutterAll
 
 "---- cscope-search ----
-autocmd VimEnter cscope.files :copen 6 | :wincmd p
+autocmd VimEnter * :copen 6 | :wincmd p
 set cscopequickfix=s-,f-,g-,c-,d-,i-,t-,e-
 nnoremap <C-f> :CscopeSearch<CR>
 nnoremap <C-h> :CscopeSearchHistory<CR>
@@ -47,6 +56,7 @@ autocmd QuickFixCmdPost [^l]* nested botright cwindow 6
 "set switchbuf=uselast
 
 "---- ctrlp ----
+let g:ctrlp_working_path_mode = 0
 let g:ctrlp_user_command = 'cat cscope.files'
 nnoremap <C-b> :CtrlPBuffer<CR>
 
@@ -64,9 +74,10 @@ set ruler
 set showmode
 set cmdheight=1
 set cursorline
-set expandtab tabstop=4 shiftwidth=4 softtabstop=4
+set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 set relativenumber
 set colorcolumn=80
+set ut=1000
 
 "---- Editor map ----
 noremap <C-j> 3<C-e>
@@ -84,4 +95,5 @@ command! GetPath :echo expand('%:p')
 "---- Auto Commands ----
 autocmd FileType cpp autocmd VimEnter * :set makeprg=g++\ -std=c++11\ -o\ %<\ %
 "autocmd FileType python,c,cpp,javascript,java autocmd BufEnter * :set colorcolumn=80
-autocmd FileType html,scss,javascript,vim autocmd BufEnter * :set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+"autocmd FileType html,scss,javascript,vim autocmd BufEnter * :set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+

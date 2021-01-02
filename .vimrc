@@ -17,14 +17,17 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'susu9/cscope_search'
 Plug 'ackyshake/VimCompletesMe'
 Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
-"Plug 'dense-analysis/ale'
+Plug 'dense-analysis/ale'
 call plug#end()
 
 "---- Ale ----
-"let g:ale_fix_on_save = 1
-"let g:ale_lint_on_text_changed = 'never'
-"let g:ale_lint_on_insert_leave = 0
-"let g:ale_lint_on_enter = 0
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_text_changed = 'never'
+let g:ale_lint_on_insert_leave = 0
+let g:ale_lint_on_enter = 0
+let g:ale_fixers = {
+\   '*': ['remove_trailing_lines', 'trim_whitespace'],
+\}
 
 "---- Tagbar ----
 let g:tagbar_left=1
@@ -96,4 +99,3 @@ command! GetPath :echo expand('%:p')
 autocmd FileType cpp autocmd VimEnter * :set makeprg=g++\ -std=c++11\ -o\ %<\ %
 "autocmd FileType python,c,cpp,javascript,java autocmd BufEnter * :set colorcolumn=80
 "autocmd FileType html,scss,javascript,vim autocmd BufEnter * :set expandtab tabstop=2 shiftwidth=2 softtabstop=2
-

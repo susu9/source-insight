@@ -54,8 +54,8 @@ nnoremap <C-h> :CscopeSearchHistory<CR>
 nnoremap <C-l> :CscopeSearchLast<CR>
 autocmd QuickFixCmdPost [^l]* nested botright cwindow 6
 "autocmd QuickFixCmdPost    l* nested botright lwindow 6
-"nnoremap <C-n> :cn<CR>
-"nnoremap <C-p> :cp<CR>
+nnoremap gj :cn<CR>
+nnoremap gk :cp<CR>
 "set switchbuf=uselast
 
 "---- ctrlp ----
@@ -89,6 +89,7 @@ nnoremap <C-w>f :vertical wincmd f<CR>
 nnoremap <silent> <F9> :TagbarToggle<CR>
 nnoremap <silent> <F10> :call SwitchTab()<CR>
 inoremap jj <Esc>
+nnoremap gc :noh<CR>
 nnoremap gt :vsp cscope.files<CR>
 nnoremap gh :edit cscope.files<CR>
 
@@ -99,3 +100,7 @@ command! GetPath :echo expand('%:p')
 autocmd FileType cpp autocmd VimEnter * :set makeprg=g++\ -std=c++11\ -o\ %<\ %
 "autocmd FileType python,c,cpp,javascript,java autocmd BufEnter * :set colorcolumn=80
 "autocmd FileType html,scss,javascript,vim autocmd BufEnter * :set expandtab tabstop=2 shiftwidth=2 softtabstop=2
+
+if !empty(glob('~/.rickch.vimrc'))
+source ~/.rickch.vimrc
+endif

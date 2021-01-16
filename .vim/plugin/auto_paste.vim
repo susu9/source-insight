@@ -1,5 +1,6 @@
 "from https://coderwall.com/p/if9mda/automatically-set-paste-mode-in-vim-when-pasting-in-insert-mode
 function! WrapForTmux(s)
+  return a:s
   if !exists('$TMUX')
     return a:s
   endif
@@ -20,4 +21,3 @@ function! XTermPasteBegin()
 endfunction
 
 inoremap <special> <expr> <Esc>[200~ XTermPasteBegin()
-

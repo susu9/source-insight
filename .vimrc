@@ -29,6 +29,10 @@ let g:ale_fixers = {
 \   '*': ['remove_trailing_lines', 'trim_whitespace'],
 \}
 
+"--- vim-signify ---
+nmap fn <plug>(signify-next-hunk)
+nmap fm <plug>(signify-prev-hunk)
+
 "---- Tagbar ----
 let g:tagbar_left=1
 autocmd VimEnter * nested :call tagbar#autoopen(1)
@@ -54,8 +58,8 @@ nnoremap <C-h> :CscopeSearchHistory<CR>
 nnoremap <C-l> :CscopeSearchLast<CR>
 autocmd QuickFixCmdPost [^l]* nested botright cwindow 6
 "autocmd QuickFixCmdPost    l* nested botright lwindow 6
-nnoremap gj :cn<CR>
-nnoremap gk :cp<CR>
+nnoremap fj :cn<CR>
+nnoremap fk :cp<CR>
 "set switchbuf=uselast
 
 "---- ctrlp ----
@@ -89,9 +93,9 @@ nnoremap <C-w>f :vertical wincmd f<CR>
 nnoremap <silent> <F9> :TagbarToggle<CR>
 nnoremap <silent> <F10> :call SwitchTab()<CR>
 inoremap jj <Esc>
-nnoremap gc :noh<CR>
-nnoremap gt :vsp cscope.files<CR>
-nnoremap gh :edit cscope.files<CR>
+nnoremap fc :noh<CR>
+nnoremap ft :vsp cscope.files<CR>
+nnoremap fh :edit cscope.files<CR>
 
 "---- Commands ----
 command! GetPath :echo expand('%:p')

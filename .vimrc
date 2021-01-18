@@ -15,10 +15,14 @@ Plug 'yggdroot/indentLine'
 "Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'susu9/cscope_search'
-Plug 'ackyshake/VimCompletesMe'
-Plug 'mhinz/vim-signify', { 'branch': 'legacy' }
+"Plug 'ackyshake/VimCompletesMe'
+Plug 'mhinz/vim-signify'
 Plug 'dense-analysis/ale'
+Plug 'ervandew/supertab'
 call plug#end()
+
+"--- Supertab ---
+let g:SuperTabDefaultCompletionType = "<c-n>"
 
 "---- Ale ----
 let g:ale_fix_on_save = 1

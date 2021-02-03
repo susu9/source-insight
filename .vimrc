@@ -19,13 +19,17 @@ Plug 'susu9/cscope_search'
 Plug 'mhinz/vim-signify'
 Plug 'dense-analysis/ale'
 Plug 'ervandew/supertab'
+Plug 'vim-scripts/a.vim'
 call plug#end()
+
+"--- A.vim ---
+let g:alternateRelativeFiles = 1
 
 "--- Supertab ---
 let g:SuperTabDefaultCompletionType = "<c-n>"
 
 "---- Ale ----
-let g:ale_fix_on_save = 1
+"let g:ale_fix_on_save = 1
 let g:ale_lint_on_text_changed = 'never'
 let g:ale_lint_on_insert_leave = 0
 let g:ale_lint_on_enter = 0
@@ -64,7 +68,7 @@ autocmd QuickFixCmdPost [^l]* nested botright cwindow 6
 "autocmd QuickFixCmdPost    l* nested botright lwindow 6
 nnoremap fj :cn<CR>
 nnoremap fk :cp<CR>
-"set switchbuf=uselast
+set switchbuf=uselast
 
 "---- ctrlp ----
 let g:ctrlp_working_path_mode = 0
@@ -88,7 +92,7 @@ set cursorline
 set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 set relativenumber
 set colorcolumn=80
-set ut=1000
+set ut=300
 
 "---- Editor map ----
 noremap <C-j> 3<C-e>

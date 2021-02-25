@@ -26,7 +26,8 @@ call plug#end()
 let g:alternateRelativeFiles = 1
 
 "--- Supertab ---
-let g:SuperTabDefaultCompletionType = "<c-n>"
+set pumheight=7
+set complete-=i
 
 "---- Ale ----
 "let g:ale_fix_on_save = 1
@@ -109,7 +110,7 @@ nnoremap fh :edit cscope.files<CR>
 command! GetPath :echo expand('%:p')
 
 "---- Auto Commands ----
-autocmd FileType cpp autocmd VimEnter * :set makeprg=g++\ -std=c++11\ -o\ %<\ %
+autocmd FileType cpp autocmd VimEnter * :set makeprg=g++\ -std=c++17\ -o\ %<\ %
 "autocmd FileType python,c,cpp,javascript,java autocmd BufEnter * :set colorcolumn=80
 "autocmd FileType html,scss,javascript,vim autocmd BufEnter * :set expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
